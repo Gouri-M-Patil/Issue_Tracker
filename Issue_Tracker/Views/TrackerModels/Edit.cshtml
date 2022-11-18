@@ -1,0 +1,81 @@
+﻿@model Issue_Tracker.Models.TrackerModels
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = null;
+
+}
+
+<h4>TrackerModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit" onsubmit="return jQueryAjaxPost(this);" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Issue_ID" type="hidden" />
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="RepoterID" class="control-label"></label>
+                        <input asp-for="RepoterID" class="form-control" />
+                        <span asp-validation-for="RepoterID" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="RepoterName" class="control-label"></label>
+                        <input asp-for="RepoterName" class="form-control" />
+                        <span asp-validation-for="RepoterName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Heading" class="control-label"></label>
+                        <input asp-for="Heading" class="form-control" />
+                        <span asp-validation-for="Heading" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="CreatedDate" class="control-label"></label>
+                        <input asp-for="CreatedDate" class="form-control" />
+                        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="AssignedToName" class="control-label"></label>
+                        <input asp-for="AssignedToName" class="form-control" />
+                        <span asp-validation-for="AssignedToName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group text">
+                            <input type="submit" value="Submit" class="btn btn-primary" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group text">
+                            <input type="reset" value="Reset" class="btn btn-warning" />
+                        </div>
+                    </div>
+                </div>    
+          </form>
+
+    </div>
+</div>
+
+@*<div>
+    <a asp-action="Index">Back to List</a>
+</div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

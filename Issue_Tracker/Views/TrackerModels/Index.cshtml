@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Issue_Tracker.Models.TrackerModels>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div id="ViewAll">
+    <h1 class="text-center">Issue Tracker Page</h1>
+
+    <p class="text-end">
+        <a onclick="showInPopup('@Url.Action("Create","TrackerModels",null,Context.Request.Scheme)','New Issue')" class="btn btn-success text-white"> <i class="fa fa-plus" aria-hidden="true"></i> Add New Issue</a>
+    </p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Issue_ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RepoterID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RepoterName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Heading)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AssignedToName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Issue_ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RepoterID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RepoterName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Heading)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssignedToName)
+                    </td>
+                    <td>
+                        <a onclick="showInPopup('@Url.Action("Edit","TrackerModels",new {id=item.Issue_ID},Context.Request.Scheme)','Edit Issue')" class="btn btn-success text-white"> <i class="fas fa-pencil-alt"></i>  Edit</a> |
+                        
+                        @*<a asp-action="Details" asp-route-id="@item.Issue_ID">Details</a> |*@
+
+                        <form asp-action="Delete" asp-route-id="@item.Issue_ID" onsubmit="return jQueryAjaxDelete(this);" class="d-inline">
+                            <input type="submit" value="Delete" class="btn btn-danger" icon="fa fa-plus" />
+                        </form>
+                        
+                       @*<a asp-action="Delete" asp-route-id="@item.Issue_ID">Delete</a>*@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
